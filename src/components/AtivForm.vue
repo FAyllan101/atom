@@ -1,6 +1,6 @@
 /<template>
     <div>
-        <form id="ativ--form"></form>
+        <form id="ativi-form"></form>
        <p>NOVA ATIVIDADE</p>
        <div>
            <div class="input-container">
@@ -41,7 +41,7 @@
              <input type="text" id="final" name="final" v-model="final" placeholder="Data de finalização">
            </div>
             <div class="input-container">
-             <label for="descricao">Descrição:</label>  
+             <label id="descricao" for="descricao">Descrição:</label>  
              <input type="text" id="descricao" name="descricao" v-model="descricao" placeholder="Descrição">
            </div>
            <div class="input-container">
@@ -59,22 +59,18 @@ export default {
 </script>
 
 <style scoped>
-    .ativ--form {
-        position:relative;
-        max-width: 250px;
-        max-height: 250px;
-        paddin:50%;
+    #ativi-form {
+        max-width: 400px;
         margin: 0 auto;
-        background: black;
     }
 
     .input-container {
         display: flex;
-        flex-direction: column;
+        flex-direction:column;
         margin-bottom: 20px; 
         max-width: 400px;
         margin-left:5%;
-        padding: 0;
+        padding: 10px;
     }
 
     label {
@@ -84,4 +80,20 @@ export default {
         padding: 5px 10px;
         border-left: 4px solid #fcba03;
     }
+
+    input.select{
+        padding:5px 10px;
+        width:300px;
+    }
+
+    #descricao {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px; 
+        min-width: 200px;
+        min-height:150px;
+        margin-left:5%;
+        padding: 0;
+    }
+
 </style>
