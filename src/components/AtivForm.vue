@@ -1,5 +1,6 @@
 /<template>
     <div>
+        <!-- formulário,arrumar para separar os componentes depois -->
         <form id="ativi-form"></form>
        <p>NOVA ATIVIDADE</p>
        <div>
@@ -10,7 +11,7 @@
             <div class="input-container">
              <label for="atribuir">Atribuir a:</label>
                 <select name="colaborador" id="colaborador" v-model="colaborador">
-                <option value="">Atribuir a:</option>
+                <option value=""></option>
                     <option value="Ayllan">Ayllan Alves</option>
                     <option value="Daniel">Daniel</option>
                     <option value="Romério">Romério</option>
@@ -41,8 +42,8 @@
              <input type="text" id="final" name="final" v-model="final" placeholder="Data de finalização">
            </div>
             <div class="input-container">
-             <label id="descricao" for="descricao">Descrição:</label>  
-             <input type="text" id="descricao" name="descricao" v-model="descricao" placeholder="Descrição">
+             <label for="descricao">Descrição:</label>  
+             <input type="text" id="descricao-box" name="descricao" v-model="descricao" placeholder="Descrição">
            </div>
            <div class="input-container">
                <input type="submit" class="submit-btn" value="Enviar atividade">
@@ -54,14 +55,37 @@
 <script>
 export default {
     name:"AtivForm",
+   //parei aqui no backend dos "ingredientes do video",cadastrar no db.jsonn
+   data() {
+        return {
+            colaboradores:null,
+            tipos:null,
+            prioridades:null,
+            nome:null,
+            inicio:null,
+            final:null,
+            descricao:null,
+            status:"Em aberto",
+            msg:null
+        }
+    },
+    methods: {
+        async getActivities(){
+
+            const req = await fetch("http://localhost:8080/atividades")
+        }
+    }
+
 }
 
 </script>
 
 <style scoped>
-    #ativi-form {
+   /* stilo do formulário */
+   #ativi-form {
         max-width: 400px;
         margin: 0 auto;
+        content: justify-content;
     }
 
     .input-container {
@@ -71,6 +95,7 @@ export default {
         max-width: 400px;
         margin-left:5%;
         padding: 10px;
+        transition: 0.5s;
     }
 
     label {
@@ -85,8 +110,8 @@ export default {
         padding:5px 10px;
         width:300px;
     }
-
-    #descricao {
+/* ajustar a descrição  */
+    .descricao-box {
         display: flex;
         flex-direction: column;
         margin-bottom: 20px; 
@@ -95,5 +120,21 @@ export default {
         margin-left:5%;
         padding: 0;
     }
-
+/* arrumar o botão enviar */
+    .submit-btn { 
+        background-color: #222;
+        color:#fcba03;
+        font-weight: bold;
+        border: 2px solid #222;
+        padding: 10px;
+        font-size: 16px;
+        margin:0 auto;
+        cursor:pointer;
+        transition:.5s;
+    }
+/* só ta mudando o botão no hover :( */
+    .submit-btn:hover {
+        /* background-color: transparent;
+        color:#222 */
+    }
 </style>
