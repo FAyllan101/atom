@@ -1,4 +1,4 @@
-/<template>
+<template>
     <div>
         <!-- formulário,arrumar para separar os componentes depois -->
         <form id="ativi-form"></form>
@@ -56,7 +56,7 @@
 export default {
     name:"AtivForm",
    //parei aqui no backend dos "ingredientes do video",cadastrar no db.jsonn
-   data() {
+    data() {
         return {
             colaboradores:null,
             tipos:null,
@@ -69,13 +69,18 @@ export default {
             msg:null
         }
     },
-    methods: {
-        async getActivities(){
+     methods: {
+         async getActivities(){
+            
+            const req = await fetch("http://localhost:3000/Activities");
+            const data = await req.json();
 
-            const req = await fetch("http://localhost:8080/atividades")
+            console.log(data);
         }
+    },
+    mounted(){
+        this.getActivities()
     }
-
 }
 
 </script>
@@ -132,9 +137,9 @@ export default {
         cursor:pointer;
         transition:.5s;
     }
-/* só ta mudando o botão no hover :( */
+
     .submit-btn:hover {
-        /* background-color: transparent;
-        color:#222 */
+        background-color: transparent;
+        color:#222;
     }
 </style>
